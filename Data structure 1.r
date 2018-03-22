@@ -28,6 +28,33 @@ class(v8)
 str(v1)
 
 #Data Frame----
+
 df=data.frame(rollno=c(1,2,3), name=c('Rohit', 'Lalit', 'Hitesh'), course=c('MBA', 'BBA', 'MCA'), dept=c('dept1', 'dept2', 'dept3'), marks=floor(runif(3,50,100)))
 df #runif command prints random values (number of values, min value, max value)
+df=fix(df) #Change data in a better and easy way if data is small
+class(df)
+ls() #lists the contents of the folder or the environment
 
+rm(list=ls()) #Delete the contents of the environment
+ls()
+ls() #recreate data in R by compiling each line by control+enter
+
+#list----
+
+(mylist1 = list(1,df,v4)) #list can have multiple data types. 
+
+#matrix----
+#Matrix can only have one data type and only two dimensions
+
+?matrix #Help for matrix command
+(mymatrix=matrix(1:24, ncol=4)) #Numbers will be filled in column wise
+(mymatrix1=matrix(1:24, ncol=4, byrow=TRUE)) #Numbers will be filled row wise
+
+#array----
+#array can have multiple dimensions
+#dimension: dim = c(rows in each matrix, columns in each matrix, no. of matrices)
+
+?array
+
+(myarray = array(1:24, dim = c(4, 3, 2), dimnames = list(c('s1', 's2', 's3', 's4'), c('Sub1', 'Sub2', 'Sub3'), c('Dept1', 'Dept2'))))
+myarray  

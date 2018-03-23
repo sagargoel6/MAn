@@ -10,3 +10,16 @@ anyNA(v1) #Checks if there is any missing value
 #all
 v1[is.na(v1)]=mean(v1, na.rm=T)  #Calculate the mean and then put it in the place of missing value
 v1
+
+#VIM----
+#VIM Package helps handle missing values
+#sleep preinstalled data frame to practice in missing value handling
+library(VIM)
+data(sleep, package='VIM')
+head(sleep)
+dim(sleep)
+complete.cases(sleep) #puts true for rows which are complete i.e. without missing values
+sleep[complete.cases(sleep), ] #Display complete rows
+sleep[!complete.cases(sleep), ] #Display non complete rows
+names(sleep)
+sum(is.na(sleep$Dream)) #No. of missing values in the column Dream

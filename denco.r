@@ -47,3 +47,26 @@ head(df1[order(df1$x, decreasing=TRUE), ], 5) #Another way of combining the abov
 (df2=aggregate(revenue ~ custname + region, data = denco, FUN=sum)) #Printing revenue sum for each customer in different regions
 head(df2[order(df2$revenue, decreasing=TRUE), ], 5)
 
+#list---
+list1=tapply(denco$revenue, denco$custname, FUN=sum)
+head(list1)
+head(sort(list1, decreasing=T))
+summary(df2)
+str(df2)
+
+#dplyr----
+#easier and uses english language syntax
+#Implement it as a pipeline
+
+names(denco)
+library(dplyr)
+denco %>% dplyr::filter(margin > 1000000) #Filters data with margin greater than 1000000
+names(denco)
+denco %>% group_by(custname) %>% summarize(Revenue = sum(revenue)) %>% arrange(desc(Revenue))
+
+denco %>% dplyr::group_by(custname) %>% dplyr::summarise(n=n()) %>% dplyr::arrange(desc(n)) #Most loyal customers
+denco %>% group_by(custname) %>% summarise(n=n()) %>% arrange(desc(n)) #Same as above
+
+denco %>% group_by(custname) %>% count(region) #Count the number of times a customer brought from a particular region
+denco %>% select(custname, region) %>% group_by(custname, region) %>% count(custname) %>% arrange(desc(n)) #Same as above 
+                                           

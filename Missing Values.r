@@ -23,3 +23,15 @@ sleep[complete.cases(sleep), ] #Display complete rows
 sleep[!complete.cases(sleep), ] #Display non complete rows
 names(sleep)
 sum(is.na(sleep$Dream)) #No. of missing values in the column Dream
+sum(is.na(sleep$Dream))
+mean(is.na(sleep$Dream)) #No. of rows with missing values / total no. of rows
+12/62 #No. of missing values / total no. of rows
+dim(sleep)
+
+sum(!complete.cases(sleep)) #Total number of incomplete rows
+
+mean(!complete.cases(sleep)) #Total number of incomplete rows / Total number of rows
+20/62
+sum(is.na(sleep))
+colSums(is.na(sleep)) #Total Number of missing values in each column
+rowSums(is.na(sleep)) #Total Number of missing values in each row

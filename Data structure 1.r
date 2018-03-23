@@ -58,3 +58,55 @@ ls() #recreate data in R by compiling each line by control+enter
 
 (myarray = array(1:24, dim = c(4, 3, 2), dimnames = list(c('s1', 's2', 's3', 's4'), c('Sub1', 'Sub2', 'Sub3'), c('Dept1', 'Dept2'))))
 myarray  
+
+df=fix(df)
+
+#Nominal, Ordinal, Interval, Ratio types of data
+
+#Factors----
+#Study factors
+
+df$rollno
+df$gender = c('M','M', 'F')
+df$gender = factor(df$gender)
+str(df)
+
+df$grades = c('A', 'C', 'B')
+df
+str(df)
+df$grades = factor(df$grades, ordered=T) #automatically selects order
+df
+df$grades
+df$grades = factor(df$grades, ordered=T, labels=c('C', 'B', 'A')) #ordered specified
+df$grades
+str(df)
+df
+
+#Factors example----
+
+sname=c('Anish', 'Sagar', 'Nihali', 'Bhavya', 'Amber', 'Sayantan')
+gender=c('M', 'M', 'F', 'F', 'M', 'M')
+course=c('CS', 'CS', 'ECE', 'IT', 'CS', 'CS')
+grades=c('A', 'B', 'C', 'D', 'E', 'F')
+marks=floor(runif(6,50,100))
+df1=data.frame(sname, course, gender, grades, marks)
+df1
+str(df1)
+df1=fix(df1)
+df1$sname=as.character(df1$sname) #Since, we don't want it to be a factor
+df1
+str(df1)
+
+df1$course=factor(df1$course) #Unordered factor, course
+df1$course #Shows levels without order
+
+df1$gender=factor(df1$gender, ordered=T) #Default ordering
+df1$gender
+
+df1$grades=factor(df1$grades, ordered=T, levels=c('B', 'D', 'A', 'E', 'C', 'F')) #Ordering specified
+df1$grades
+
+str(df1)
+df1
+str(df1)
+str(df1)

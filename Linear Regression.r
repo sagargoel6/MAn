@@ -43,20 +43,20 @@ summary(fit1)
 #0.9042 means 90% variation in Y is explained by X. Rest 10% is not known. 
 
 #If p-value is less than 0.05, then model is significant. 
-
 names(fit1)
 
-# Predictions
+#Predictions----
+coef(fit1)[2]
 (Y = 0.9645 + 1.6699 * 4)  # for X=4
-fitted(fit1)
+(Y=coef(fit1)[1] + coef(fit1)[2] * 4)
 
-range(X)
-new1 = data.frame(X=c(1,2,3,4,5))
+fitted(fit1) #Predicted Values of Y 
+cbind(df1, fitted(fit1)) #Shows X, Y (Actual), Y (Predicted)
+
+range(df1$X)
+new1 = data.frame(X=c(1,2,3,4,5)) #New Random values in the range of X. 
+?predict
 predict(fit1, newdata= new1)
-
-#df1$predict = predict(fit1, newdata= new2)
-df1$predict = fitted(fit1)
-head(df1)
 
 #Variation
 (SSE = sum((df1$Y - df1$predict)^2))
@@ -75,21 +75,25 @@ anova(fit1)
 qt(0.95+.025, 14-2)
 
 
-#Assumption : Graphical Analysis
+#Assumption : Graphical Analysis (Normal Distr., Equal Variance, Scattered residuals, Independence Of errors, Homocidacity)
+
 plot(x=X, y=residuals(fit1)) # Linearity
-plot(residuals(fit1))
-car::durbinWatsonTest(fit1)
+plot(residuals(fit1)) #To fulfil assumptions
+#Since, scattered, hence, Linear regression assumption agreed. 
+
+
+car::durbinWatsonTest(fit1) #To check Independence of errors.
 
 #Normality
+qqnorm(residuals(fit1)) 
+qqline(residuals(fit1)) #plotting without standardisation 
+
 hist(residuals(fit1), freq=F)
 lines(density(residuals(fit1)))
 
 (h=hist(residuals(fit1)))
 names(h)
 cbind(h$breaks, h$counts)
-
-qqnorm(residuals(fit1))
-qqline(residuals(fit1))
 
 residuals(fit1)
 rstandard(fit1)
@@ -100,8 +104,7 @@ qqline(sales.stdres)
 stem(residuals(fit1))
 
 #Equal Variance
-plot(y=residuals(fit1), x=X)
-
+plot(y=residuals(fit1), x=X) #Since, the number of points above y=0 are similar below y=0, then equal variance. 
 
 #Outlier Analysis
 df1

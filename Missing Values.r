@@ -35,3 +35,5 @@ mean(!complete.cases(sleep)) #Total number of incomplete rows / Total number of 
 sum(is.na(sleep))
 colSums(is.na(sleep)) #Total Number of missing values in each column
 rowSums(is.na(sleep)) #Total Number of missing values in each row
+
+#VIM Done

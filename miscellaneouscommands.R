@@ -8,3 +8,5 @@ AirPassengers
 #Learn R----
 library(swirl) #For online help
 swirl()
+
+bye()
